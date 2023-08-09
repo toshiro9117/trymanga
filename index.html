@@ -38,13 +38,16 @@
     background-color: #ffa500;
   }
   .search-bar {
-    margin-top: 10px;
+    margin: 10px;
   }
 </style>
 </head>
 <body>
 <div class="search-bar">
-  <input type="text" id="searchInput" placeholder="Search by Title or Total Chapter">
+  <form id="searchForm">
+    <input type="text" name="searchInput" placeholder="Search by Title or Total Chapter">
+    <input type="submit" value="Search">
+  </form>
 </div>
 <table>
   <tr>
@@ -68,29 +71,5 @@
     <td>Data 9</td>
   </tr>
 </table>
-
-<script>
-  document.getElementById("searchInput").addEventListener("input", function() {
-    var input, filter, table, tr, td, i, j, txtValue;
-    input = document.getElementById("searchInput");
-    filter = input.value.toLowerCase();
-    table = document.querySelector("table");
-    tr = table.getElementsByTagName("tr");
-    for (i = 1; i < tr.length; i++) {
-      var displayRow = false;
-      td = tr[i].getElementsByTagName("td");
-      for (j = 0; j < td.length; j++) {
-        if (td[j]) {
-          txtValue = td[j].textContent || td[j].innerText;
-          if (txtValue.toLowerCase().indexOf(filter) > -1) {
-            displayRow = true;
-            break;
-          }
-        }
-      }
-      tr[i].style.display = displayRow ? "" : "none";
-    }
-  });
-</script>
 </body>
 </html>
