@@ -39,14 +39,37 @@
   }
   .search-bar {
     margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .search-input {
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 70%;
+    max-width: 400px;
+  }
+  .search-button {
+    background-color: #8b0000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  .search-button:hover {
+    background-color: #800000;
   }
 </style>
 </head>
 <body>
 <div class="search-bar">
   <form id="searchForm">
-    <input type="text" name="searchInput" placeholder="Search by Title or Total Chapter">
-    <input type="submit" value="Search">
+    <input class="search-input" type="text" name="searchInput" placeholder="Search by Title or Total Chapter">
+    <button class="search-button" type="submit">Search</button>
   </form>
 </div>
 <table>
