@@ -11,7 +11,7 @@
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     min-height: 100vh;
   }
@@ -21,6 +21,7 @@
     max-width: 600px;
     background-color: #ffa07a;
     border: 5px solid #8b0000;
+    margin-top: 20px;
   }
   th, td {
     padding: 10px;
@@ -30,6 +31,7 @@
   th {
     background-color: #8b0000;
     color: white;
+    cursor: pointer;
   }
   tr:nth-child(even) {
     background-color: #ffd700;
@@ -37,30 +39,87 @@
   tr:nth-child(odd) {
     background-color: #ffa500;
   }
+  .search-bar {
+    width: 80%;
+    max-width: 600px;
+    padding: 10px;
+    margin-top: 20px;
+  }
 </style>
 </head>
 <body>
+<div class="search-bar">
+  <input type="text" id="searchInput" placeholder="Search by Title">
+</div>
 <table>
-  <tr>
-    <th>Title</th>
-    <th>Total Chapter</th>
-    <th>Link</th>
-  </tr>
-  <tr>
-    <td>Data 1</td>
-    <td>Data 2</td>
-    <td>Data 3</td>
-  </tr>
-  <tr>
-    <td>Data 4</td>
-    <td>Data 5</td>
-    <td>Data 6</td>
-  </tr>
-  <tr>
-    <td>Data 7</td>
-    <td>Data 8</td>
-    <td>Data 9</td>
-  </tr>
+  <thead>
+    <tr>
+      <th onclick="sortTable(0)">Title</th>
+      <th onclick="sortTable(1)">Total Chapter</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody id="tableBody">
+    <tr>
+      <td>Data 1</td>
+      <td>10</td>
+      <td><a href="#">Link 1</a></td>
+    </tr>
+    <tr>
+      <td>Data 2</td>
+      <td>20</td>
+      <td><a href="#">Link 2</a></td>
+    </tr>
+    <tr>
+      <td>Data 3</td>
+      <td>15</td>
+      <td><a href="#">Link 3</a></td>
+    </tr>
+  </tbody>
 </table>
+
+<script>
+  function sortTable(columnIndex) {
+    var table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementById("tableBody");
+    switching = true;
+    while (switching) {
+      switching = false;
+      rows = table.rows;
+      for (i = 1; i < (rows.length - 1); i++) {
+        shouldSwitch = false;
+        x = rows[i].getElementsByTagName("td")[columnIndex];
+        y = rows[i + 1].getElementsByTagName("td")[columnIndex];
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          shouldSwitch = true;
+          break;
+        }
+      }
+      if (shouldSwitch) {
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+      }
+    }
+  }
+
+  document.getElementById("searchInput").addEventListener("input", function() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchInput");
+    filter = input.value.toLowerCase();
+    table = document.getElementById("tableBody");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toLowerCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  });
+</script>
 </body>
 </html>
