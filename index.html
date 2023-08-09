@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retro HTML Table</title>
+<style>
+  body {
+    font-family: 'Courier New', monospace;
+    background-color: #f0e68c;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  table {
+    border-collapse: collapse;
+    width: 80%;
+    max-width: 600px;
+    background-color: #ffa07a;
+    border: 5px solid #8b0000;
+  }
+  th, td {
+    padding: 10px;
+    text-align: center;
+    border: 2px solid #8b0000;
+  }
+  th {
+    background-color: #8b0000;
+    color: white;
+  }
+  tr:nth-child(even) {
+    background-color: #ffd700;
+  }
+  tr:nth-child(odd) {
+    background-color: #ffa500;
+  }
+</style>
+</head>
+<body>
+<table>
+  <tr>
+    <th>Header 1</th>
+    <th>Header 2</th>
+    <th>Header 3</th>
+  </tr>
+  <tr>
+    <td>Data 1</td>
+    <td>Data 2</td>
+    <td>Data 3</td>
+  </tr>
+  <tr>
+    <td>Data 4</td>
+    <td>Data 5</td>
+    <td>Data 6</td>
+  </tr>
+  <tr>
+    <td>Data 7</td>
+    <td>Data 8</td>
+    <td>Data 9</td>
+  </tr>
+</table>
+</body>
+</html>
